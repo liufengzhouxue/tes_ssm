@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tarena.dao.VideoMapper">
+	<!-- 根据用户id查找所有视频id -->
+	<select id="findVideoIdsByUserId"
+	        parameterType="java.lang.String"
+	        resultType="java.lang.String">
+		select video_id
+		from t_video
+		where user_id=#{userId}
+	</select>
+	<!-- 根据用户id 删除视频 -->
+	<delete id="deleteVideoByUserId"
+	        parameterType="java.lang.String">
+	        
+		delete from t_video where user_id=#{userId}        
+	</delete>
+	<!-- 根据视频id删除历史缓存 -->
+	<delete id="deleteHistoryCacheByVideoId"
+	        parameterType="java.lang.String">
+		delete from t_history_cache_collection_purchased
+		where video_id=#{videoId}        
+	</delete>
+</mapper>
